@@ -4,6 +4,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    
     //[SerializeField] private float boostSpeed = 10f;
     [SerializeField][Tooltip("The speed the character goes upwards")] private float floatSpeed = 5f;
    
@@ -17,7 +18,7 @@ public class Movement : MonoBehaviour
     
     private void FixedUpdate()
     {
-        _rb.AddForce(transform.up * floatSpeed + new Vector3(_input.moveDirection.x * moveSpeed, _input.moveDirection.y * moveSpeed, 0), ForceMode2D.Force); 
+        _rb.AddForce(new Vector3(_input.moveDirection.x * moveSpeed, _input.moveDirection.y * moveSpeed, 0), ForceMode2D.Force); 
     }
     void Update()
     {

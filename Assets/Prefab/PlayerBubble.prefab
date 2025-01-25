@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32e0f20f28cf9048b861c67b7d3d130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10
   floatSpeed: 5
 --- !u!50 &2512424024034231704
 Rigidbody2D:
@@ -175,9 +175,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1.5
   m_AngularDamping: 0.05
-  m_GravityScale: 0
+  m_GravityScale: -0.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

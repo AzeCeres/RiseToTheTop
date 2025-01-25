@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, IDamageable
 {
-    public int maxHealth = 100;
-    public int currentHealth;
+    [SerializeField] private int maxHealth = 100;
+    private int currentHealth;
     public void Start()
     {
         currentHealth = maxHealth;
