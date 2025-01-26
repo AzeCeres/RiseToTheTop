@@ -10,6 +10,9 @@ public class Movement : MonoBehaviour
    
     private Rigidbody2D _rb;
     private Input _input;
+
+    [SerializeField]private GameObject bullet;
+    
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -29,6 +32,7 @@ public class Movement : MonoBehaviour
     }
     void Shoot()
     {
-        Debug.Log("Shooting");
+        //Debug.Log("Shooting");
+        Instantiate(bullet, transform.position, Quaternion.identity);
     }
 }

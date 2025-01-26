@@ -20,7 +20,7 @@ public class Input : MonoBehaviour
         lookVector = value.Get<Vector2>();
     }
     public bool isShooting { get; private set; }
-    public void OnShoot(InputValue value)
+    public void OnAttack(InputValue value)
     {
         if (value.isPressed)
         {
