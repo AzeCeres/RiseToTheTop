@@ -4,8 +4,13 @@ using UnityEngine;
 public class MousePoint : MonoBehaviour
 {
     private Camera camera;
-    private Vector3 mousePos;
-
+    private Vector3 direction;
+    private Input _input;
+    [SerializeField] private Transform mousePos;
+    private void Awake()
+    {
+        _input = GetComponent<Input>();
+    }
     private void Start()
     {
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -13,9 +18,23 @@ public class MousePoint : MonoBehaviour
 
     private void Update()
     {
-        mousePos = camera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
-        Vector3 rotation = mousePos - transform.position;
-        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        direction =  mousePos.position - transform.position;
+        //if (_input.usedMouseLast)
+        //{
+        //    
+        //}
+        //else
+        //{
+        //    direction = transform.position - new Vector3(_input.lookVector.x, _input.lookVector.y, 0);
+        //}
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+        
+        
+        
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, direction);
     }
 }

@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float lifeTime = 2f;
     [SerializeField] private int damage = 1;
     private Rigidbody2D _rb;
+    private GameObject _owner;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -16,9 +17,12 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject, lifeTime);
         // Impulse
-        _rb.AddForce(transform.right * moveSpeed, ForceMode2D.Impulse);
+        _rb.AddForce(transform.up * moveSpeed, ForceMode2D.Impulse);
     }
-    
+    public void SetOwner(GameObject owner)
+    {
+        _owner = owner;
+    }
     
     // CONSTANT SPEED (LINEAR MOVEMENT)
     //private void FixedUpdate()
@@ -27,6 +31,7 @@ public class Bullet : MonoBehaviour
     //}
     private void OnCollisionEnter(Collision other)
     {
+        if (other.gameObject == _owner) return;
         if (other.gameObject.TryGetComponent(out IDamageable damageable))
         {
             damageable.TakeDamage(damage);

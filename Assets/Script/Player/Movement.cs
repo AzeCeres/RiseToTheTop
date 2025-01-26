@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float shotKnockback = 5f;
     
     //[SerializeField] private float boostSpeed = 10f;
     [SerializeField][Tooltip("The speed the character goes upwards")] private float floatSpeed = 5f;
@@ -33,6 +33,9 @@ public class Movement : MonoBehaviour
     void Shoot()
     {
         //Debug.Log("Shooting");
-        Instantiate(bullet, transform.position, Quaternion.identity);
+        var bulletObj = Instantiate(bullet, transform.position, transform.rotation);
+        //var bulletClass = bullet.GetComponent<Bullet>();
+        bullet.GetComponent<Bullet>().SetOwner(gameObject);
+        _rb.AddForce(-transform.up * shotKnockback, ForceMode2D.Impulse);
     }
 }

@@ -1,7 +1,7 @@
 ﻿
    using System;
    using UnityEngine;
-   public class EnemyMovement : MonoBehaviour
+   public class EnemyPatrol : MonoBehaviour
    {
        
        int currentWaypointIndex = 0;
@@ -21,7 +21,8 @@
                 }
               }
               transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].position, moveSpeed*Time.fixedDeltaTime);
-              transform.rotation = Quaternion.Slerp( transform.rotation, Quaternion.LookRotation(Vector3.forward, waypoints[currentWaypointIndex].position - transform.position),rotationSpeed * Time.fixedDeltaTime);
+              var direction = waypoints[currentWaypointIndex].position - transform.position;
+              transform.rotation = Quaternion.Slerp( transform.rotation, Quaternion.LookRotation(Quaternion.LookRotation(Vector3.forward, direction).eulerAngles, Vector3.up),rotationSpeed * Time.fixedDeltaTime);
               
        }
    }
