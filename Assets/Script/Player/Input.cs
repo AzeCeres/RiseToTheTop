@@ -21,7 +21,6 @@ public class Input : MonoBehaviour
         //Might need a different vector for the mouse, might not be between -1 and 1 like the joypad
         lookVector = value.Get<Vector2>();
         usedMouseLast = true;
-        print($"LookVector = {lookVector}");
     }
     public bool isShooting { get; private set; }
     public void OnAttack(InputValue value)

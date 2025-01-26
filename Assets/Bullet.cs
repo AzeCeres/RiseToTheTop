@@ -32,10 +32,16 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject == _owner) return;
-        if (other.gameObject.TryGetComponent(out IDamageable damageable))
+        //if (other.gameObject.TryGetComponent(out IDamageable damageable))
+        //{
+        //    damageable.TakeDamage(damage);
+        //}
+        var enemy = other.gameObject.GetComponent<Enemy>();
+        if (enemy != null)
         {
-            damageable.TakeDamage(damage);
+            enemy.TakeDamage(damage);
         }
+        
         Destroy(gameObject);
     }
 }

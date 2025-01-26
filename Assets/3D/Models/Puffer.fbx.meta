@@ -3,7 +3,12 @@ guid: 876fb20d06b8a104d8aabc09252a28d3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puffer
+    second: {fileID: 2100000, guid: e558a9ac0d57f8d428ec91cc914858d9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -1,11 +1,12 @@
+using System;
 using Script.Player;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] public int maxHealth { get; private set; } = 100;
     [SerializeField] private GameObject bubble;
-    private int currentHealth;
+    public int currentHealth { get; private set; }
     private Vector3 originalScale;
     
     public void Start()
@@ -35,7 +36,25 @@ public class PlayerManager : MonoBehaviour, IDamageable
     }
     void Size()
     {
-        bubble.transform.localScale = new Vector3(currentHealth / maxHealth, currentHealth / maxHealth, currentHealth / maxHealth);
+        var newScale = originalScale.x * (currentHealth / (float)maxHealth);
+        bubble.transform.localScale = new Vector3(newScale, newScale, newScale);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        print("Trigger");
+        if (other.gameObject.CompareTag("Air"))
+        {
+            Heal(1);
+        }
+        Heal(1);
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(10);
+        }
     }
     public void Die()
     {
